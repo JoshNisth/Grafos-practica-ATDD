@@ -37,9 +37,11 @@ public class BuscarGoogleTest {
 
         //https://sites.google.com/chromium.org/driver/getting-started
         
-    	String path = "/Users/gustavo/apps/chromedriver-mac-x64_119/chromedriver119";
+    	String path = "C:/chromedriver/chromedriver.exe";
+
         
         System.setProperty("webdriver.chrome.driver", path);
+
         
         WebDriverManager.chromedriver().setup();
         
