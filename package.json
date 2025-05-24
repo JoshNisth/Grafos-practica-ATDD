@@ -1,0 +1,24 @@
+{
+  "name": "grafos-practica-atdd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshNisth/Grafos-practica-ATDD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshNisth/Grafos-practica-ATDD/issues"
+  },
+  "homepage": "https://github.com/JoshNisth/Grafos-practica-ATDD#readme",
+  "description": "",
+  "dependencies": {
+    "chromedriver": "^136.0.3",
+    "selenium-webdriver": "^4.33.0"
+  }
+}
