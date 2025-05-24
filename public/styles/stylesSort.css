@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter" ;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #DEDEEA;
+  margin-top: 180px; 
+}
+
+.header{
+  display: flex;
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  padding: 40px 100px;
+  background: #61678B;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+.label-grande-negrita {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.checkbox-grande {
+  transform: scale(1.5); /* Ajusta el tamaño del checkbox */
+}
+.input-grande {
+  width: 300px; /* Define el ancho deseado */
+  height: 30px; /* Define el largo deseado */
+  min-height: auto;
+  padding: 10px; /* Opcional: ajusta el relleno para mejorar el aspecto */
+  font-size: 16px; /* Opcional: ajusta el tamaño del texto */
+}
+.header a{
+  color: rgb(255, 255, 255);
+}
+
+.logo{
+  display: flex;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del flujo a vertical */
+  align-items: flex-start; /* Alinea los elementos a la izquierda */
+  padding: 20px;
+}
+
+.boton {
+  display: block;
+  text-align: center; 
+  width: 175px; /* Ancho ajustado */
+  margin-bottom: 10px; /* Espacio entre los botones */
+  background-color: #BCB9D8; 
+  color: rgb(0, 0, 0);
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.button-column {
+  flex: 0 0 auto; /* Evita que la columna de botones crezca */
+  padding-right: 20px; /* Agrega un espacio a la derecha de la columna de botones */
+}
+
+.form-column {
+  flex: 1;
+  padding-left: 10px; /* Ajusta el padding izquierdo */
+}
+
+.output {
+  margin-bottom: 10px; /* Espacio entre los campos de output */
+}
+
+.boton:hover {
+    background-color: #473179;
+    color: #FBAD41;
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;  
+}
+
+.menu {
+    margin-top: 100px; 
+    position: fixed;
+    top: 0;
+    right: -270px; 
+    width: 270px;
+    height: 100%;
+    background: #FBAD41;
+    transition: 0.3s; 
+    padding-top: 60px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu ul li a:hover {
+    background: #FD918F;
+}
+
+.menu h3{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.contenido{
+    text-align: center;
+    padding-left: 270px;
+    padding-right: 270px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.contenido h4{
+    text-align: justify;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.contenido p, .contenido h2 {
+    padding: 20px;
+    text-align: justify;
+}
+
+.mitades td {
+    width: 50%;
+}
+
+.help td{
+    width: 25%;
+}
+
+.help {
+    text-align: center; 
+    margin: 0 auto;
+    background-color:#61678B;
+    color: #DEDEEA;
+}
+
+.contenido img {
+    padding: 20px;
+}
+
+.contactos td, .contactos th {
+    width: 33%;
+    padding: 15px;
+}
+
+.contactos {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FBAD41;
+    color: #473179;
+}
+
+#containerGrafico {
+  height: 400px; /* Ajusta la altura según tu preferencia */
+  width: 80%; /* Ajusta el ancho según tu preferencia */
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center; /* Centra horizontalmente */
+  margin: 0 auto; /* Centra horizontalmente en relación al contenedor padre */
+  border: 1px solid black; /* Opcional: Agrega un borde para visualización */
+}
+
+.bar {
+  width: 10px; /* Ajusta el ancho de las barras según tu preferencia */
+  background-color: black;
+  margin: 1px;
+}
+
+
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/tipo.css">
+    <title>Nodolandia</title>
+</head>
+<body>
+    <header class="header" style="background-color: #78ACC1; height: 100px;">
+        <div class="logo">
+            <a href="johnson.html" style="margin-right: 20px; color: white; margin-top: 35px;"><b>Back</b></a>
+            <div id="colorPicker">  
+                
+                    <img src="assets/canvasColor.png" alt="Canvas Color" width="55px" height="70px">
+                
+                 <input type="color" id="colorSelector" value="#ffffff" onchange="cambiarColorLienzo()" onclick="desactivarBotones(); desactivarBotones2() ">
+            </div>
+            <button class="boton" id="nodeButton" onclick="agregarNodoSeleccionado()" onclick= ><img src="assets/node.png" alt="Node Icon" width="55px" height="70px"></button>
+            <button class="boton" id="edgeButton" onclick="agregarAristaSeleccionada()"><img src="assets/edge1.png" alt="Edge1 Icon" width="55px" height="70px"></button>
+           <button class="boton" id="deleteNodeButton" onclick="eliminarNodoSeleccionado()"><img src="assets/borrarNodo.png" alt="deleteNode Icon" width="55px" height="70px"></button>
+            <button class="boton" id="deleteEdgeButton" onclick="eliminarAristaSeleccionada()"><img src="assets/borrarEdges.png" alt="deleteEdge Icon" width="55px" height="70px"></button>
+            
+            <button class="boton" onclick="limpiar2()"><img src="assets/clean1.png" alt="Clean Icon" width="55px" height="70px"></button>
+             <button class="boton" id="matrixButton" onclick="generarMatriz()"><img src="assets/matriz.png" alt="deleteEdge Icon" width="55px" height="70px"></button>
+            <div class="botones">
+                <button class="boton2" id="minimizar" onclick="generarMatriz(); solveMinimum();">Minimizar</button>
+                <button class="boton2" id="maximizar" onclick="generarMatriz(); solveMaximum();">Maximizar</button>
+            </div>
+            <div class="botones">
+                <a id="descargar" download="grafo.json"><button class="botonOtro" onclick="desactivarBotones(); desactivarBotones2() ">Exportar</button></a>
+                <input type="file" id="cargarArchivo" accept=".json" style="display: none;">
+                <button class="botonOtro" id="importButton" onclick="importarArchivo()">Importar</button>
+            </div>
+            
+
+           
+        </div>
+        <div class="help-button" style="margin-right: 20px;">
+            <button class="boton" onclick="openHelpPage()">
+                <img src="assets/help.png" alt="deleteEdge Icon" width="55px" height="70px">
+            </button>
+        </div>
+    </header>
+    <div align = "center">
+        <label for="nodoInicial">Nodo inicial:</label>
+        <input type="text" id="nodoInicial" name="nodoInicial">
+          
+        <label for="nodoFinal">Nodo final:</label>
+        <input type="text" id="nodoFinal" name="nodoFinal">
+    </div>
+    <br>
+    <div id="contenedor">
+        <div id="lienzo"></div>
+        <div id="contenedor-matriz">
+            <div id="matriz"></div>
+            <div id="solucion" class="solucion-container"></div>
+        </div>
+    </div>
+    
+    
+    
+
+
+    <div id="menu" class="menu">
+        <ul>
+            <li><h3>Node tools</h3></li>
+            <input type="text" id="nombreNodo" placeholder="New node name">
+            <button onclick="cambiarColorNodoSeleccionado()">Node color</button>
+            <input type="color" id="colorSelectorNode" value="#ffffff" style="display: none;" onchange="cambiarColorNodo(event)">
+        </ul>
+    </div>
+
+    
+    <script src="scripts/scriptD.js" defer></script>
+    <script src="scripts/dijkstra.js" defer></script>
+    <script src="scripts/funcionamiento.js" defer></script>
+    <script src="scripts/matriz.js" defer></script>
+    <script src="scripts/herramientas.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs"></script>
+</body>
+</html>

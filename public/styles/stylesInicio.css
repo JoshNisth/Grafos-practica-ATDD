@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter" ;
+}
+body {
+    min-height: 100vh;
+    background-color: #DEDEEA;
+    margin-top: 180px; 
+}
+
+
+.header{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    padding: 40px 100px;
+    background: #61678B;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    
+}
+.header a{
+    color: rgb(255, 255, 255);
+}
+
+.logo{
+    display: flex;
+}
+
+.boton {
+    text-align: center; 
+    margin: 0 auto;
+    background-color: #BCB9D8; 
+    color: #473179;
+    padding: 10px 20px; 
+    font-size: 20px; 
+    cursor: pointer;
+    
+}
+
+.boton:hover {
+    background-color: #473179;
+    color: #FBAD41;
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;  
+}
+
+.menu {
+    margin-top: 100px; 
+    position: fixed;
+    top: 0;
+    right: -270px; 
+    width: 270px;
+    max-height: calc(100vh - 100px); /* Altura máxima igual al 100% de la altura de la ventana menos el margen superior del menú */
+    background: #FBAD41;
+    overflow-y: auto; 
+    transition: 0.3s; 
+    padding-top: 60px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu a {
+    display: block; /* Para que el enlace ocupe todo el espacio del contenedor */
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.menu a:hover {
+    background: #FD918F;
+}
+
+.menu h3 {
+    text-align: center;
+    padding: 20px;
+    margin: 0; /* Eliminamos el margen superior e inferior para que se vea mejor */
+}
+
+
+.contenido{
+    text-align: center;
+    padding-left: 270px;
+    padding-right: 270px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
+.contenido h4{
+    text-align: justify;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.contenido p,h2 {
+    padding: 20px;
+    text-align: justify;
+}
+.mitades td{
+    width: 50%;
+}
+
+.help td{
+    width: 25%;
+}
+.help {
+    text-align: center; 
+    margin: 0 auto;
+    background-color:#61678B;
+    color: #DEDEEA;
+}
+.contenido img{
+    padding: 20px;
+}
+
+.contactos td,th{
+    width: 33%;
+    padding: 15px;
+}
+.contactos{
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FBAD41;
+    color: #473179;
+}
+
+/* Estilos responsivos para helpSort.html */
+@media (max-width: 768px) {
+    /* Estilos para pantallas pequeñas */
+    .contenido {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .help td {
+      width: 100%;
+      display: block;
+      padding: 10px;
+    }
+  
+    .help td img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Estilos para pantallas más pequeñas */
+    h1 {
+      font-size: 36px;
+    }
+  
+    .help td p {
+      font-size: 14px;
+    }
+  }

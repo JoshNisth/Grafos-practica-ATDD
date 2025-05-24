@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+* {
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter" ;
+}
+body {
+    min-height: 100vh;
+    background-color: #DEDEEA;
+    margin-top: 180px; 
+}
+.header{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    padding: 50px 120px;
+    background: #61678B;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    
+}
+.header a{
+    color: #FBB759;
+}
+
+.logo{
+    display: flex;
+}
+
+.boton {
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 80px;
+    background-color: #78ACC1; 
+    color: #ffffff;
+    padding: 7px 25px; 
+    font-size: 14px; 
+    cursor: pointer;
+    
+    border: 0;
+}
+.boton2 {
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 40px;
+    background-color: #78ACC1; 
+    color: #ffffff;
+    padding: 7px 25px; 
+    font-size: 14px; 
+    cursor: pointer;
+    
+    border: 0;
+}
+
+.botonOtro {
+    text-align: right;
+    border: 1;
+    border-color: #8488B5;
+    align-items: center;
+    margin: 0 auto;
+    height: 40px;
+    background-color: #FD918F; 
+    color: #ffffff;
+    padding: 7px 25px; 
+    font-size: 14px; 
+    cursor: pointer;
+    
+}
+
+.botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los botones horizontalmente */
+}
+.cargarArchivo{
+    text-align: right;
+    align-items: center;
+    margin: 0 auto;
+    height: 60px;
+    background-color: #FD918F; 
+    color: #ffffff;
+    padding: 10px 20px; 
+    font-size: 14px; 
+    cursor: pointer;
+}
+/*para los botones activos */
+.boton.active {
+    background-color: #2d175e;
+    color: #f7c783;
+}
+
+
+.boton:hover {
+    background-color: #473179;
+    color: #FBAD41;
+}
+
+.boton2.active {
+    background-color: #2d175e;
+    color: #f7c783;
+}
+
+
+.boton2:hover {
+    background-color: #473179;
+    color: #FBAD41;
+}
+
+
+h1{
+    text-align: center;
+    font-size: 50px;  
+}
+
+.menu {
+    margin-top: 100px; 
+    position: fixed;
+    top: 0;
+    right: -270px; 
+    width: 270px;
+    height: 100%;
+    background: #FBAD41;
+    transition: 0.3s; 
+    padding-top: 60px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.menu ul li a:hover {
+    background: #FD918F;
+}
+.menu h3{
+    text-align: center;
+    padding-bottom: 20px;
+}
+.contenido{
+    text-align: center;
+
+    
+}
+
+/* Estilos CSS para el lienzo */
+#contenedor {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+
+}
+
+#lienzo {
+    width: 700px; 
+    height: 1000px;
+    border: 1px solid #ccc;
+    margin-left: 100px;
+}
+#matriz {
+    font-family: Arial, sans-serif;
+}
+
+
+
+  
+  #matriz table {
+    border-collapse: collapse;
+  }
+  
+  #matriz th, #matriz td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #matriz th {
+    background-color: #f2f2f2;
+  }
+
+
+  #contenedor {
+    display: flex;
+    align-items: flex-start;
+}
+
+#contenedor-matriz {
+    display: flex;
+    flex-direction: column; /* Para apilar los elementos verticalmente */
+}
+#solucion th, #solucion td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }

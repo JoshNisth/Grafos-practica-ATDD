@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles/stylesSort.css">
+
+<title>Sort</title>
+</head>
+<body>
+  <header class="header">
+    <a class="logo">
+      <button class="boton" onclick="window.location.href='nodos.html'" >Construir Grafo</button>
+    </a>
+    <nav class="navbar">
+      <a href="index.html"><b>Inicio </b> | </a> 
+      <a href="nosotros.html"><b>Sobre Nosotros </b> | </a> 
+      <a href="#" onclick="toggleMenu()"><b>Algoritmos</b> |</a>
+      <a href="helpSort.html" target="_blank" onclick="return window.open('helpSort.html', 'popup', 'width=1000,height=1000,top=100,left=100');">
+        <b>Help</b>
+    </a>
+    </nav>
+    
+  </header>
+
+  <div id="menu" class="menu">
+    <ul>
+      <li><h3>Menú de Algoritmos</h3></li>
+      <li><a href="johnson.html">Algoritmo de Johnson</a></li>
+      <li><a href="johnson.html">Algoritmo de Asignacion</a></li>
+      <li><a href="sort.html">Algoritmos de ordenamiento</a></li>
+    </ul>
+  </div>
+  <script src="scripts/menu.js"></script>
+  <script src="scripts/sort.js"></script> <!-- Agregar referencia al archivo sort.js -->
+  <script src="scripts/selectionSort.js"></script> <!-- Agregar referencia al archivo selectionSort.js -->
+  <script src="scripts/insertionSort.js"></script>
+  <script src="scripts/shellSort.js"></script>
+  <script src="scripts/mergeSort.js"></script>
+  <script src="scripts/funcionamiento.js"></script>
+  <h1>Algoritmos de <span style="color: #FBAD41;">Ordenamiento</span></h1>
+
+  <div class="content-wrapper">
+    <div class="button-column">
+      <div class="container">
+        <button id="selectionSortBtn" class="boton">Selection Sort</button>
+        <button id="insertionSortBtn" class="boton">Insertion Sort</button>
+        <button id="shellSortBtn" class="boton">Shell Sort</button>
+        <button id="mergeSortBtn" class="boton">Merge Sort</button>
+      </div>
+    </div>
+  
+    <div class="form-column">
+      <div>
+        <label for="inputNormal" class="label-grande-negrita">Input Normal</label>
+        <input type="checkbox" id="inputNormal" checked class="checkbox-grande">
+        <button id="cargarBtn" class="boton" style="padding: 3px 1px;">Cargar Lista</button>
+        <input type="text" id="inputLabel" class="input-grande" placeholder="Introduce elementos (1, 7, 2, etc)"> <br>
+      </div>
+      <div>
+        <label for="inputAleatorio" class="label-grande-negrita">Input Aleatorio</label>
+        <input type="checkbox" id="inputAleatorio" class="checkbox-grande">
+        <br>
+        <label for="numElements" style="font-size: 18px;">Número de elementos</label>
+        <input type="number" id="numElements" value="10" style="width: 70px; height: 20px;"><br>
+        <label for="lowerLimit"style="font-size: 18px;">Límite inferior</label>
+        <input type="number" id="lowerLimit" value="0" style="width: 70px;height: 20px;"> <br>
+        <label for="upperLimit"style="font-size: 18px;">Límite superior</label>
+        <input type="number" id="upperLimit" value="100" style="width: 70px;height: 20px;  margin-bottom: 5px;"> <br>
+        <button id="crearListaAleatoriaBtn" class="boton" style="padding: 3px 1px;">Crear Lista Aleatoria</button>
+        <label id="listaAleatoriaLabel" style="font-size: 20px;"></label>
+      </div>
+      
+      <div class="output">
+        <label for="outputLabel" class="label-grande-negrita">Output</label><br>
+        <div id="outputLabel" style="font-size: 20px;"></div>
+      </div>
+      
+      <div class="output">
+        <div id="performanceLabel" style="font-size: 20px;"></div>
+      </div>
+      <button id="cleanBtn" class="boton" style="padding: 3px 1px;">Clean</button>
+      <button id="descargarBtn" class="boton" style="padding: 3px 1px;">Descargar Output</button>
+    </div>
+    
+    <!-- Prueba -->
+    <div id="containerGrafico"></div>
+  </div>
+</body>
+</html>

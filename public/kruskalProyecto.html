@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/tipo.css">
+    <link rel="stylesheet" href="styles/styleKruskal.css">
+    <title>Nodolandia</title>
+</head>
+<body>
+    <header class="header" style="background-color: #78ACC1; height: 100px;">
+        <div class="logo">
+            <a href="indexProyecto.html" style="margin-right: 20px; color: white; margin-top: 35px;"><b>Back</b></a>
+
+            <button class="boton" id="nodeButton" onclick="agregarNodoSeleccionado()" onclick= ><img src="assets/antena.webp" alt="Node Icon" width="55px" height="70px"></button>
+            <button class="boton" id="edgeButton" onclick="agregarAristaSeleccionada()"><img src="assets/edge1.png" alt="Edge1 Icon" width="55px" height="70px"></button>
+           <button class="boton" id="deleteNodeButton" onclick="eliminarNodoSeleccionado()"><img src="assets/borrarNodo.png" alt="deleteNode Icon" width="55px" height="70px"></button>
+            <button class="boton" id="deleteEdgeButton" onclick="eliminarAristaSeleccionada()"><img src="assets/borrarEdges.png" alt="deleteEdge Icon" width="55px" height="70px"></button>
+            
+            <button class="boton" onclick="limpiar()"><img src="assets/clean1.png" alt="Clean Icon" width="55px" height="70px"></button>
+            <div class="botones">
+                <button class="boton" id="minimizar" onclick=""><img src="assets/icon.png" alt="resolver Icon" width="55px" height="70px"></button>
+            </div>
+            <div class="botones">
+                <a id="descargar" download="grafo.json"><button class="botonOtro" onclick="desactivarBotones(); desactivarBotones2() ">Exportar</button></a>
+                <input type="file" id="cargarArchivo" accept=".json" style="display: none;">
+                <button class="botonOtro" id="importButton" onclick="importarArchivo()">Importar</button>
+            </div>
+            
+
+           
+        </div>
+        <div class="help-button" style="margin-right: 20px;">
+            <button class="boton" onclick="openHelpPageKruskal()">
+                <img src="assets/help.png" alt="deleteEdge Icon" width="55px" height="70px">
+            </button>
+        </div>
+    </header>
+    <div id="colorPicker" style="display: flex; flex-direction: column; padding-left: 5%;">  
+        <label for="imagenFondo" style="color: #78ACC1;">Cambiar Fondo</label>
+        <input type="file" id="imagenFondo">
+
+    </div>
+    <div id="contenedor">
+       
+        <div id="lienzo"  style=" max-width:80%; max-height: 600px;">
+        </div>
+        <div id="contenedor-matriz">
+            <div id="solucion" class="solucion-container">Aquí se mostrarán los resultados del camino y las longitudes.</div>
+        </div>
+        
+      
+    </div>
+    
+    
+    
+
+
+    <div id="menu" class="menu">
+        <ul>
+            <li><h3>Node tools</h3></li>
+            <input type="text" id="nombreNodo" placeholder="New node name">
+            <button onclick="cambiarColorNodoSeleccionado()">Node color</button>
+            <input type="color" id="colorSelectorNode" value="#ffffff" style="display: none;" onchange="cambiarColorNodo(event)">
+        </ul>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc99CQXYoNpg0JHdxbXRYVtrj4UgM9FyY&callback=initMap"></script>
+    <script src="scripts/proyectoKruskal.js" defer></script>
+    <script src="scripts/funcionamiento.js" defer></script>
+    <script src="scripts/herramientas.js" defer></script>
+    <script src="scripts/kruskal2.js" defer></script>
+    <script src="scripts/lienzoImage.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs"></script>
+</body>
+</html>

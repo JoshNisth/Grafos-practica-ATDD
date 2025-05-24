@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/stylesInicio.css">
+    <title>Nodolandia</title>
+</head>
+<body>
+    <header class="header">
+        <a  class = "logo">
+            <button class="boton" onclick="window.location.href='johnsonGrafo.html'" >Resolver con  Johnson</button>
+        </a>
+        <nav class="navbar">
+            <a href="index.html"><b>Inicio </b> | </a> 
+            <a href="nosotros.html"><b>Sobre Nosotros </b> | </a> 
+            <a href="#" onclick="toggleMenu()"><b>Menu</b></a>
+        </nav>
+    </header>
+
+    <div id="menu" class="menu">
+        <ul>
+            <li><a href="nodos.html">Contruir un grafo </a></li>
+            <li><h3>Menú de Algoritmos</h3></li>
+            <li><a href="johnson.html">Algoritmo de Johnson</a></li>
+            <li><a href="proceso.html">Algoritmo de Asignacion</a></li>
+            <li><a href="proceso.html">Algoritmo de Nort West</a></li>
+            <li><h3>Menú de Ordenamientos</h3></li>
+            <li><a href="proceso.html">Selection Sort</a></li>
+            <li><a href="proceso.html">Insertion Sort</a></li>
+            <li><a href="proceso.html">Shell Sort</a></li>
+        </ul>
+    </div>
+    <script src="scripts/menu.js"></script>
+    <h1>Algoritmo de <span style="color: #FBAD41;">Johnson</span></h1>
+    <article class="contenido">
+        <iframe width="800" height="400" src="https://www.youtube.com/embed/MV7EAD9zL64?si=hcS0kG-5WuuAM2CX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h2>Condiciones</h3>
+        <p><b>1. </b>El grafo a resolver debe ser monodireccional o unidireccional</p>
+        <p><b>2.</b> Existira una condicion critica de atributos es decir que se buscara la optimzacion, ya sea minimizar o maximixar</p>
+        <p><b>3.</b> Existe una solucion y la solucion es unica</p>
+        <h2>Holgura</h2>
+        <p>La holgura se refiere a la diferencia entre el costo estimado desde un nodo de origen hasta un nodo de destino y el peso real de la arista que conecta estos nodos.
+
+            La holgura se calcula de la siguiente manera:
+            <br>
+            <b>Holgura=Distancia desde el nodo de origen hasta el nodo de destino estimada− Peso de la arista entre el nodo de origen y el nodo de destino</b>
+            <br>
+            En el contexto del algoritmo de Johnson, la holgura se utiliza para detectar ciclos de peso negativo en el grafo. Si la holgura de un camino es negativa, indica que se ha encontrado un ciclo de peso negativo en el grafo, lo que puede causar problemas en el cálculo de los caminos más cortos. El algoritmo de Johnson ajusta los pesos de las aristas del grafo para eliminar los pesos negativos antes de calcular los caminos más cortos.
+            
+            En resumen, la holgura en el algoritmo de Johnson es una medida que ayuda a detectar ciclos de peso negativo en el grafo y se utiliza para realizar ajustes en los pesos de las aristas antes de calcular los caminos más cortos.</p>
+    </article>
+</body>
+</html>

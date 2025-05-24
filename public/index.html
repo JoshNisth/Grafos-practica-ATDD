@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/stylesInicio.css">
+    <title>Nodolandia</title>
+</head>
+<body>
+    <header class="header">
+        <a  class = "logo">
+            <button class="boton" onclick="window.location.href='nodos.html'" >Construir Grafo</button>
+        </a>
+        <nav class="navbar">
+            <a href="index.html"><b>Inicio </b> | </a> 
+            <a href="nosotros.html"><b>Sobre Nosotros </b> | </a> 
+            <a href="#" onclick="toggleMenu()"><b>Menu</b></a>
+        </nav>
+    </header>
+
+    <div id="menu" class="menu">
+        <ul>
+            <li><a href="nodos.html">Contruir un grafo</a></li>
+            <li><h3>Menú de Algoritmos</h3></li>
+            <li><a href="johnson.html">Algoritmo de Johnson</a></li>
+            <li><a href="proceso.html">Algoritmo de Asignacion</a></li>
+            <li><a href="nortwestGrafo.html">Algoritmo de Nort West</a></li>
+            <li><h3>Menú de Ordenamientos</h3></li>
+            <li><a href="proceso.html">Ordenamientos</a></li>
+        </ul>
+    </div>
+    <script src="scripts/menu.js"></script>
+    <h1>Nodo<span style="color: #FBAD41;">landia</span></h1>
+    <article class="contenido">
+        <h2>¿Qué es un Grafo?</h2>
+        <p>En primera instancia debemos entender que es un grafo. Un grafo es una composición de un conjunto de objetos conocidos como nodos que se relacionan con otros nodos a través de un conjunto de conexiones conocidas como aristas.
+
+                        Los grafos  permiten estudiar las relaciones que existen entre unidades que interactúan con otras.
+                        
+                        Podemos representar diversas situaciones o elementos con grafos. Estos son extraordinariamente útiles en situaciones complejas, es por esto, que es común conseguir la implementación de análisis de grafos en estudios de ciencias exactas, ciencias sociales y en aplicaciones informáticas.
+                        
+                        Veamos a continuación los tipos de grafos  que podemos implementar.</p></td>
+        <iframe width="800" height="400" src="https://www.youtube.com/embed/-dCeFEqDkUI" title="Intro to Graph Databases Episode #2 - Properties of Graph DBs &amp; Use Cases" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <p>Existen definiciones que debemos conocer a profundidad, para entender las amplias posibilidades que nos brindan los grafos para estudiar relaciones entre diferentes tipos de información. En primer lugar debemos conocer es la composición exacta de un grafo y algunos conceptos asociados.
+
+            Un grafo en su totalidad es un par ordenado compuesto por vértices (v) y aristas (e); donde en la gran mayoría de los casos los vértices son de cuantificación finita. El número de vértices que componen al grafo, son las que conocemos como orden. Existe también el concepto de grado que se corresponde al número de arcos al que pertenecen de forma externa y en cuanto a las aristas también conseguimos el concepto de bucle que no es más que una arista relacionada de diversas formas con el mismo nodo.
+            
+            Teniendo claros estos conceptos, podemos empezar a profundizar en las definiciones de tipos de grafos. Existen diversos tipos de grafos, analizaremos en esta oportunidad los esquemas de grafos más conocidos como son los grafos dirigidos, no dirigidos y etiquetados.</p>
+        <h2>Tipos de Grafos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th><h3>Grafo dirigido</h3></th>
+                    <th><h3>Grafo no dirigido</h3></th>
+                </tr>
+            </thead>
+            <tbody class="mitades">
+                <tr>
+                    <td>
+                        <p>Un grafo dirigido conocido también como dígrafo consta de un conjunto de vértices y aristas donde cada arista se asocia de forma unidireccional a través de una flecha con otro.
+
+                            Las aristas dependiendo de su salida o ingreso reciben la calificación de entrante o saliente, la condición común, es que siempre tienen un destino hacia un nodo.</p>
+                    </td>
+                    <td><p>Los grafos no dirigidos son aquellos que constan un conjunto de vértices que están conectados a un conjunto de aristas de forma no direccional.
+
+                        Esto significa que una arista puede indistintamente recorrerse desde cualquiera de sus puntos y en cualquier dirección.</p></td>
+                </tr>
+            </tbody>
+        </table>
+        <img src="assets/grafosejm.png" width="500" height="300" >
+        <h3>Grafos etiquetados o ponderados</h3>
+        <p>Esta clasificación es denominada como grafos etiquetados o grafos dirigidos con pesos. Este tipo de grafos concentran aristas que pueden poseer información adicional donde podemos reflejar nombres, costos, valores u otros datos.
+
+            Estos grafos también son denominados como redes de actividad y el número asociado al arco, se le denomina factor de peso. Este grafo es el que más comúnmente utilizamos para representar situaciones de la vida real.</p>
+        <img src="assets/grafoejm2.png" width="400" height="250" >
+            
+    </article>
+</body>
+</html>

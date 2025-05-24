@@ -1,0 +1,30 @@
+/* Estilos CSS para el lienzo */
+#contenedor {
+  display: flex;
+}
+
+#lienzo {
+  width: 800px; /* Ancho aumentado */
+  height: 600px; /* Altura aumentada */
+  border: 1px solid #ccc;
+  margin-right: 20px;
+}
+
+#matriz {
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+}
+
+#matriz table {
+  border-collapse: collapse;
+}
+
+#matriz th, #matriz td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+#matriz th {
+  background-color: #fd9a98;
+}
