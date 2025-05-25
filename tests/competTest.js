@@ -1,64 +1,90 @@
-const { Builder, By } = require('selenium-webdriver');
-const assert  = require('assert');
-const sleep   = ms => new Promise(r => setTimeout(r, ms));
+//constructor, localizador html, condiciones
+const { Builder, By, until } = require('selenium-webdriver');
+//validación
+const assert = require('assert');
 
-(async () => {
-  const driver = await new Builder().forBrowser('chrome').build();
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+let driver;
+
+/******************** BeforeTest ********************/
+async function setUp() {
+  driver = await new Builder().forBrowser('chrome').build();
+}
+
+/******************** AfterTest ********************/
+async function tearDown() {
+  if (driver) {
+    await driver.quit();
+  }
+}
+
+/******************** Test Principal ********************/
+async function testCompet() {
   try {
-    /** 1. Abrir la página **/
+    console.log('--- INICIO DE PRUEBA compet.html ---');
+
+    /** Paso 1. Abrir la página **/
     await driver.get('https://joshnisth.github.io/Grafos-practica-ATDD/docs/compet.html');
 
-    /** 2. Asegura que el lienzo sea visible ***/
+    /** Paso 2. Verifica visibilidad del lienzo **/
     const lienzo = await driver.findElement(By.id('lienzo'));
+    //lo desplaza al centro de la pantalla
     await driver.executeScript('arguments[0].scrollIntoView({block:"center"})', lienzo);
+//garantiza carga
     await driver.wait(async () => {
       const { width, height } = await lienzo.getRect();
       return width > 400 && height > 400;
-    }, 8_000);
+    }, 8000);
 
-    /***** 3. Activa modo nodo *****/
+    /** Paso 3. Activar modo nodo **/
     await driver.findElement(By.id('nodeButton')).click();
     await sleep(400);
 
-    /***** 4. Mueve al centro y dibuja 6 nodos en círculo *****/
+    /** Paso 4. Dibujar 3 nodos en círculo **/
     const act = driver.actions({ bridge: true });
-    await act.move({ origin: lienzo, x: 0, y: 0 }).perform();   // centro (0,0)
+    await act.move({ origin: lienzo, x: 0, y: 0 }).perform();
 
-    // Radio = 30 % del lado menor
     const { width, height } = await lienzo.getRect();
-    const r = Math.round(Math.min(width, height) * 0.30 / 2);   // /2 porque offset es desde centro
+    const r = Math.round(Math.min(width, height) * 0.30 / 2);
 
     for (let i = 0; i < 3; i++) {
       const ang = (2 * Math.PI / 6) * i;
-      const dx  = Math.round(r * Math.cos(ang));
-      const dy  = Math.round(r * Math.sin(ang));
+      const dx = Math.round(r * Math.cos(ang));
+      const dy = Math.round(r * Math.sin(ang));
       await act.move({ origin: lienzo, x: dx, y: dy }).click().perform();
-      await sleep(500);
+      await sleep(1500);
     }
 
-    /***** 5. Calcular punto medio *****/
+    /** Paso 5. Calcular punto medio **/
     await driver.findElement(By.css("button[onclick*='calcularPuntoMedioTotal']")).click();
-    await sleep(1000);
 
-    /***** 6. Cerrar modal (×) *****/
+    /** Paso 6. Esperar a que aparezca el modal **/
+    const modal = await driver.findElement(By.id('modal'));
+    await driver.wait(until.elementIsVisible(modal), 10000);
+
+    /** Paso 7. Verificar contenido del modal con Assert **/
+    const message = await driver.findElement(By.id('message')).getText();
+    console.log('Texto en el modal:', message);
+    await sleep(1500);
+    assert.ok(message.includes('punto medio'), 'ERROR: No se encontró el mensaje esperado en el modal');
+
+    /** Paso 8. Cerrar el modal **/
     const closeBtns = await driver.findElements(By.css('.modal-content .close'));
     if (closeBtns.length && await closeBtns[0].isDisplayed()) {
+      await sleep(1500);
       await closeBtns[0].click();
     }
 
-    /***** 7. Mostrar coordenadas *****/
-    await driver.findElement(By.css("button[onclick*='mostrarCoordenadasNodos']")).click();
-    await sleep(800);
-
-    /***** 8. Verificación mínima *****/
-    const txt = await driver.findElement(By.id('solucion')).getText();
-    assert.ok(txt !== null, 'Solución vacía / no generada');
-
-    console.log('Se ejecuta bien compet.html, muestra el punto medio y las cordenadas de los nodos adyacentes');
-    await sleep(20_000);          // deja Chrome visible 20 s
-  } catch (e) {
-    console.error('Prueba fallida:', e);
-    await sleep(20_000);
+    console.log('Prueba completada: Se muestran el punto medio y el mensaje del modal');
+  } catch (err) {
+    console.error('La prueba falló por:', err.message);
   }
-  // sin driver.quit() para inspección manual
+}
+
+/******************** Ejecución ********************/
+(async () => {
+  await setUp();
+  await testCompet();
+  await tearDown(); 
 })();
