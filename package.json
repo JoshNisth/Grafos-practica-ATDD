@@ -2,25 +2,26 @@
   "name": "grafos-practica-atdd",
   "version": "1.0.0",
   "main": "index.js",
+
   "directories": {
-    "doc": "docs"
+    "doc": "docs",
+    "test": "tests"
   },
+
   "scripts": {
-    "selenium": "node tests/test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JoshNisth/Grafos-practica-ATDD.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JoshNisth/Grafos-practica-ATDD/issues"
-  },
-  "homepage": "https://github.com/JoshNisth/Grafos-practica-ATDD#readme",
-  "description": "",
+  "shell-test": "node tests/sortShellTest.js",
+  "northwest-test": "node tests/northwestTest.js",
+
+  "google-test": "echo \"(pendiente) agrega tests/googleButtonTest.js\"",
+  "dzone-test":  "echo \"(pendiente) agrega tests/dzoneAlertsTest.js\"",
+
+  "test": "npm run shell-test"
+}
+,
+
   "dependencies": {
     "selenium-webdriver": "^4.33.0"
-  }
+  },
+
+  "license": "ISC"
 }
