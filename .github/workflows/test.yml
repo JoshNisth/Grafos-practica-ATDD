@@ -1,4 +1,4 @@
-name: SortShellTest Only
+name: SortShellTest in GitHub Actions
 
 on:
   push:
@@ -10,16 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
+    - name: Clonar el repositorio
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Instalar Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
-    - name: Install dependencies
+    - name: Instalar dependencias
       run: npm install
 
-    - name: Run sortShellTest
+    - name: Instalar Chrome y ChromeDriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-browser chromium-chromedriver
+        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+
+    - name: Ejecutar sortShellTest.js
       run: npm run sort-test
+      env:
+        CI: true
