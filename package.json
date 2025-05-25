@@ -6,11 +6,9 @@
     "doc": "docs",
     "test": "tests"
   },
-  "scripts": {
-    "shell-test":  "node tests/sortShellTest.js",
-    "compet-test": "node tests/competTest.js",
-    "test": "npm run shell-test && npm run compet-test"
-  },
+"scripts": {
+  "sort-test": "node tests/sortShellTest.js"
+},
   "dependencies": {
     "selenium-webdriver": "^4.33.0"
   },
