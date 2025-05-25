@@ -7,7 +7,8 @@
     "test": "tests"
   },
  "scripts": {
-  "sort-test": "node tests/sortShellTest.js"
+  "sort-test": "node tests/sortShellTest.js",
+  "compet-test": "node tests/competTest.js"
 },
   "dependencies": {
     "selenium-webdriver": "^4.33.0"
