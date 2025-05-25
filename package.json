@@ -6,7 +6,7 @@
     "doc": "docs",
     "test": "tests"
   },
-"scripts": {
+ "scripts": {
   "sort-test": "node tests/sortShellTest.js"
 },
   "dependencies": {

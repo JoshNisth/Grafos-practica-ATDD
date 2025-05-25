@@ -2,40 +2,31 @@ name: Selenium SortShellTest
 
 on:
   push:
-    branches: [main]   # Dispara en commits a main
-  pull_request:        # …y en PRs hacia main
+    branches: [main]
+  pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Clonar tu repo
-    - name: Checkout repo
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-    # 2. Instalar Node.js 18 LTS
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: '18'
 
-    # 3. Instalar dependencias de npm
-    - name: Install dependencies
+    - name: Instalar dependencias
       run: npm install
 
-    # 4. Instalar Chrome + ChromeDriver (versión snap)
-    - name: Install Chrome & ChromeDriver
+    - name: Instalar Chrome y ChromeDriver
       run: |
         sudo apt-get update
         sudo apt-get install -y chromium-browser chromium-chromedriver
-        # Crear el enlace simbólico solo si no existe
-        if [ ! -e /usr/bin/chromedriver ]; then
-          sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
-        fi
+        # crear enlace solo si no existe
+        [ -e /usr/bin/chromedriver ] || sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
 
-    # 5. Ejecutar SOLO sortShellTest.js (en modo headless por CI=true)
-    - name: Run sortShellTest
+    - name: Ejecutar sortShellTest en headless
       run: npm run sort-test
       env:
         CI: true
