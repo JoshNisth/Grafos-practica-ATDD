@@ -2,26 +2,17 @@
   "name": "grafos-practica-atdd",
   "version": "1.0.0",
   "main": "index.js",
-
   "directories": {
     "doc": "docs",
     "test": "tests"
   },
-
   "scripts": {
-  "shell-test": "node tests/sortShellTest.js",
-  "northwest-test": "node tests/northwestTest.js",
-
-  "google-test": "echo \"(pendiente) agrega tests/googleButtonTest.js\"",
-  "dzone-test":  "echo \"(pendiente) agrega tests/dzoneAlertsTest.js\"",
-
-  "test": "npm run shell-test"
-}
-,
-
+    "shell-test":  "node tests/sortShellTest.js",
+    "compet-test": "node tests/competTest.js",
+    "test": "npm run shell-test && npm run compet-test"
+  },
   "dependencies": {
     "selenium-webdriver": "^4.33.0"
   },
-
   "license": "ISC"
 }
