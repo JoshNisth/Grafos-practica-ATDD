@@ -9,13 +9,15 @@
   },
 
   "scripts": {
-    "shell-test": "node tests/sortShellTest.js",
+  "shell-test": "node tests/sortShellTest.js",
+  "northwest-test": "node tests/northwestTest.js",
 
-    "google-test": "echo \"(pendiente) agrega tests/googleButtonTest.js\"",
-    "dzone-test":  "echo \"(pendiente) agrega tests/dzoneAlertsTest.js\"",
+  "google-test": "echo \"(pendiente) agrega tests/googleButtonTest.js\"",
+  "dzone-test":  "echo \"(pendiente) agrega tests/dzoneAlertsTest.js\"",
 
-    "test": "npm run shell-test"
-  },
+  "test": "npm run shell-test"
+}
+,
 
   "dependencies": {
     "selenium-webdriver": "^4.33.0"
