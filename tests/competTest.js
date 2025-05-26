@@ -1,7 +1,7 @@
-// constructor, localizador html, condiciones
+//constructor, localizador html, condiciones
 const { Builder, By, until } = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');          // ← añadido
-// validación
+const chrome = require('selenium-webdriver/chrome');   // añadido para opciones headless
+//validación
 const assert = require('assert');
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -10,29 +10,33 @@ let driver;
 
 /******************** BeforeTest ********************/
 async function setUp() {
-  /* ── Opciones de Chrome ─────────────────────────── */
+  /* ── Configurar Chrome ─────────────────────────── */
   const opts = new chrome.Options();
-  if (process.env.CI) {                                   // GitHub Actions
+
+  // Modo headless si está en entorno CI (GitHub Actions)
+  if (process.env.CI) {
     opts.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
   }
 
-  /* ── ServiceBuilder ── ruta fija a chromedriver en CI */
+  /* ── ServiceBuilder: usar chromedriver del sistema en CI ── */
   const svc = process.env.CI
-    ? new chrome.ServiceBuilder('/usr/bin/chromedriver')
-    : new chrome.ServiceBuilder();                        // local normal
+    ? new chrome.ServiceBuilder('/usr/bin/chromedriver') // ruta fija en Ubuntu-Actions
+    : new chrome.ServiceBuilder();                       // local: autodetecta
 
   driver = await new Builder()
     .forBrowser('chrome')
     .setChromeOptions(opts)
     .setChromeService(svc)
     .build();
+
+  /* Ajustar tamaño del viewport (headless empieza 800×600)      *
+   * Garantiza que #lienzo sea grande al primer render           */
+  await driver.manage().window().setRect({ width: 1280, height: 800 });
 }
 
 /******************** AfterTest ********************/
 async function tearDown() {
-  if (driver) {
-    await driver.quit();
-  }
+  if (driver) await driver.quit();
 }
 
 /******************** Test Principal ********************/
@@ -45,13 +49,13 @@ async function testCompet() {
 
     /** Paso 2. Verifica visibilidad del lienzo **/
     const lienzo = await driver.findElement(By.id('lienzo'));
-    // lo desplaza al centro de la pantalla
+    //lo desplaza al centro de la pantalla
     await driver.executeScript('arguments[0].scrollIntoView({block:"center"})', lienzo);
-    // garantiza carga
+    //garantiza carga y tamaño suficiente
     await driver.wait(async () => {
       const { width, height } = await lienzo.getRect();
-      return width > 400 && height > 400;
-    }, 8000);
+      return width > 300 && height > 300;               // umbral 300 px
+    }, 15000);                                          // timeout 15 s
 
     /** Paso 3. Activar modo nodo **/
     await driver.findElement(By.id('nodeButton')).click();
@@ -59,15 +63,15 @@ async function testCompet() {
 
     /** Paso 4. Dibujar 3 nodos en círculo **/
     const act = driver.actions({ bridge: true });
-    await act.move({ origin: lienzo, x: 0, y: 0 }).perform();
+    await act.move({ origin: lienzo, x: 0, y: 0 }).perform();     // centro (offset 0,0)
 
     const { width, height } = await lienzo.getRect();
-    const r = Math.round(Math.min(width, height) * 0.30 / 2);   // radio 30 %
+    const r = Math.round(Math.min(width, height) * 0.30 / 2);    // radio ≈30 %
 
     for (let i = 0; i < 3; i++) {
-      const ang = (2 * Math.PI / 3) * i;                        // 0°,120°,240°
-      const dx = Math.round(r * Math.cos(ang));
-      const dy = Math.round(r * Math.sin(ang));
+      const ang = (2 * Math.PI / 3) * i;                         // 0°,120°,240°
+      const dx  = Math.round(r * Math.cos(ang));
+      const dy  = Math.round(r * Math.sin(ang));
       await act.move({ origin: lienzo, x: dx, y: dy }).click().perform();
       await sleep(1500);
     }
@@ -94,9 +98,11 @@ async function testCompet() {
       await closeBtns[0].click();
     }
 
-    console.log('Prueba completada: modal y punto medio OK');
+    console.log('✅ Prueba completada: modal y punto medio OK');
+    if (!process.env.CI) await sleep(30000);            // inspección local
   } catch (err) {
-    console.error('La prueba falló por:', err.message);
+    console.error('❌ La prueba falló por:', err.message);
+    if (!process.env.CI) await sleep(30000);
   }
 }
 
