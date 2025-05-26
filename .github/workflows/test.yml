@@ -35,3 +35,8 @@ jobs:
     - name: competTest (headless)
       run: npm run compet-test
       env: { CI: true }
+
+     # --- Ejecutar northwestTest ---
+    - name: northwestTest (headless)
+      run: npm run northwest-test
+      env: { CI: true }
