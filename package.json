@@ -7,9 +7,10 @@
     "test": "tests"
   },
  "scripts": {
-  "sort-test": "node tests/sortShellTest.js",
-  "compet-test": "node tests/competTest.js"
-},
+    "sort-test":  "node tests/sortShellTest.js",
+    "compet-test": "node tests/competTest.js",
+    "test": "npm run sort-test && npm run compet-test"
+  },
   "dependencies": {
     "selenium-webdriver": "^4.33.0"
   },
