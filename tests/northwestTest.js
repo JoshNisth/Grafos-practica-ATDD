@@ -1,64 +1,80 @@
 const { Builder, By, until } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 const assert = require('assert');
 
-(async function pruebaCompleta() {
-  let driver = await new Builder().forBrowser('chrome').build();
+// Función auxiliar para pausas
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+
+// Configuración para entornos CI/CD (como GitHub Actions)
+const opts = new chrome.Options();
+if (process.env.CI) {
+  opts.addArguments('--headless', '--no-sandbox', '--disable-dev-shm-usage');
+}
+const svc = process.env.CI
+  ? new chrome.ServiceBuilder('/usr/bin/chromedriver') // ruta común en CI Linux
+  : new chrome.ServiceBuilder();
+
+(async function pruebaNorthwest() {
+  const driver = await new Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(opts)
+    .setChromeService(svc)
+    .build();
 
   try {
-    // Paso 1 - Abrir la página
+    /* Paso 1 – Abrir la página */
     await driver.get('https://joshnisth.github.io/Grafos-practica-ATDD/docs/nortwestGrafo.html');
     await driver.manage().setTimeouts({ implicit: 5000 });
-    await driver.sleep(1000);
+    await sleep(1000);
 
-    // Paso 2 - Ingresar datos en filas y columnas
-    const inputFilas = await driver.findElement(By.id('filas'));
-    const inputColumnas = await driver.findElement(By.id('columnas'));
-    const botonGenerar = await driver.findElement(By.id('generarMatriz'));
+    /* Paso 2 – Ingresar filas y columnas */
+    const filas = await driver.findElement(By.id('filas'));
+    const columnas = await driver.findElement(By.id('columnas'));
+    const btnGenerar = await driver.findElement(By.id('generarMatriz'));
 
-    await inputFilas.clear();
-    await inputFilas.sendKeys('3');
-    await driver.sleep(500);
+    await filas.clear();
+    await filas.sendKeys('3');
+    await columnas.clear();
+    await columnas.sendKeys('3');
+    await sleep(500);
+    await btnGenerar.click();
+    await sleep(1000);
 
-    await inputColumnas.clear();
-    await inputColumnas.sendKeys('3');
-    await driver.sleep(500);
-
-    await botonGenerar.click();
-    await driver.sleep(1000);
-
-    // Paso 3 - Verificar la matriz generada
+    /* Paso 3 – Verificar que se genera la matriz */
     const contenedor = await driver.wait(until.elementLocated(By.id('matrizInputs')), 3000);
-    assert.ok(await contenedor.isDisplayed(), '❌ No se muestra la matriz generada');
-
-    //Paso 4 - Llenar la matriz generada
+    assert.ok(await contenedor.isDisplayed(), '❌ No se muestra el contenedor de la matriz');
 
     const inputs = await contenedor.findElements(By.css('input[type="number"]'));
     assert.ok(inputs.length >= 9, `❌ Se esperaban al menos 9 inputs, se encontraron ${inputs.length}`);
-    await driver.sleep(1000);
 
+    await sleep(1000);
+
+    /* Paso 4 – Llenar la matriz con valores del 1 al 9 */
     for (let i = 0; i < inputs.length; i++) {
       await inputs[i].clear();
       await inputs[i].sendKeys((i + 1).toString());
-      await driver.sleep(200);
+      await sleep(100);
     }
 
-    // Paso 5 - Clic en "Maximizar"
-    const botonMaximizar = await driver.findElement(By.id('maximizar'));
-    await botonMaximizar.click();
-    await driver.sleep(2000);
+    /* Paso 5 – Clic en "Maximizar" */
+    const btnMaximizar = await driver.findElement(By.id('maximizar'));
+    await btnMaximizar.click();
+    await sleep(2000);
 
-    // Paso 6 - Verificar resultado tras maximizar
+    /* Paso 6 – Verificar resultado generado */
     const matrizResultado = await driver.findElement(By.id('matriz'));
     assert.ok(await matrizResultado.isDisplayed(), '❌ No se muestra el resultado en #matriz');
 
-    const contenidoTexto = await matrizResultado.getText();
-    assert.ok(contenidoTexto.length > 0, '❌ El contenido de la matriz está vacío tras maximizar');
+    const resultadoTexto = await matrizResultado.getText();
+    assert.ok(resultadoTexto.length > 0, '❌ El resultado está vacío tras maximizar');
 
-    console.log('✅ Prueba extendida completada exitosamente.');
+    console.log('✅ Prueba completa ejecutada correctamente.');
+    if (!process.env.CI) await sleep(10000); // Permite inspección local
+
   } catch (error) {
-    console.error('❌ Error en la prueba:', error.message);
+    console.error('❌ Error en la prueba:', error);
+    if (!process.env.CI) await sleep(10000); // Inspección si falla
   } finally {
-    await driver.sleep(2000);
     await driver.quit();
   }
 })();
