@@ -61,7 +61,7 @@ async function testCompet() {
     await driver.findElement(By.id('nodeButton')).click();
     await sleep(400);
 
-    /** Paso 4. Dibujar 3 nodos en círculo **/
+    /** Paso 4. Dibujar 3S nodos en círculo **/
     const act = driver.actions({ bridge: true });
     await act.move({ origin: lienzo, x: 0, y: 0 }).perform();     // centro (offset 0,0)
 
@@ -99,10 +99,10 @@ async function testCompet() {
     }
 
     console.log('Prueba completada satisfactoriamente: modal y punto medio');
-    if (!process.env.CI) await sleep(30000);            // inspección local
+    if (!process.env.CI) await sleep(10000);            // inspección local
   } catch (err) {
     console.error('La prueba falló por:', err.message);
-    if (!process.env.CI) await sleep(30000);
+    if (!process.env.CI) await sleep(10000);
   }
 }
 
