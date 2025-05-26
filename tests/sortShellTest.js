@@ -62,9 +62,11 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
     assert.strictEqual(outTxt, esperado, 'La lista no quedó ordenada');
     console.log('Shell Sort ordenó correctamente');
 
-    if (!process.env.CI) await sleep(30000);  // 30 s de inspección local
-  } catch (e) {
+    if (!process.env.CI) await sleep(10000);  // 30 s de inspección local
+  }catch (e) {
     console.error('Error:', e);
-    if (!process.env.CI) await sleep(30000);
+    if (!process.env.CI) await sleep(10000);
+  } finally {
+    await driver.quit();  // <- Siempre cierra el navegador
   }
 })();
