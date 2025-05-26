@@ -1,4 +1,4 @@
-name: Selenium SortShellTest
+name: Selenium UI Tests
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: '18'
 
-    - name: Instalar dependencias
+    - name: Instalar dependencias npm
       run: npm install
 
     - name: Instalar Chrome y ChromeDriver
@@ -26,7 +26,12 @@ jobs:
         # crear enlace solo si no existe
         [ -e /usr/bin/chromedriver ] || sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
 
-    - name: Ejecutar sortShellTest en headless
+    # --- Ejecutar sortShellTest ---
+    - name: sortShellTest (headless)
       run: npm run sort-test
-      env:
-        CI: true
+      env: { CI: true }
+
+    # --- Ejecutar competTest ---
+    - name: competTest (headless)
+      run: npm run compet-test
+      env: { CI: true }
