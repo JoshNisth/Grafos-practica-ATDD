@@ -39,7 +39,7 @@ async function tearDown() {
   if (driver) await driver.quit();
 }
 
-/******************** Test Principal ********************/
+/******************** Lógica Test Principal ********************/
 async function testCompet() {
   try {
     console.log('--- INICIO DE PRUEBA compet.html ---');
@@ -98,10 +98,10 @@ async function testCompet() {
       await closeBtns[0].click();
     }
 
-    console.log('✅ Prueba completada: modal y punto medio OK');
+    console.log('Prueba completada satisfactoriamente: modal y punto medio');
     if (!process.env.CI) await sleep(30000);            // inspección local
   } catch (err) {
-    console.error('❌ La prueba falló por:', err.message);
+    console.error('La prueba falló por:', err.message);
     if (!process.env.CI) await sleep(30000);
   }
 }
