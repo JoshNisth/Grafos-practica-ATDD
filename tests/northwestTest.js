@@ -1,50 +1,56 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
 
-(async function pruebaGenerarMatriz() {
+(async function pruebaCompleta() {
   let driver = await new Builder().forBrowser('chrome').build();
 
   try {
-    // Paso 1 - Inicio: Abrir la página
+    // Paso 1 - Abrir la página
     await driver.get('https://joshnisth.github.io/Grafos-practica-ATDD/docs/nortwestGrafo.html');
     await driver.manage().setTimeouts({ implicit: 5000 });
+    await driver.sleep(1000);
 
-    // Paso 2 - Obtener elementos
-    let inputFilas = await driver.findElement(By.id('filas'));
-    let inputColumnas = await driver.findElement(By.id('columnas'));
-    let botonGenerar = await driver.findElement(By.id('generarMatriz'));
+    // Paso 2 - Obtener e ingresar datos en campos de filas/columnas
+    const inputFilas = await driver.findElement(By.id('filas'));
+    const inputColumnas = await driver.findElement(By.id('columnas'));
+    const botonGenerar = await driver.findElement(By.id('generarMatriz'));
 
-    assert.ok(inputFilas, 'No se encontró el input de filas');
-    assert.ok(inputColumnas, 'No se encontró el input de columnas');
-    assert.ok(botonGenerar, 'No se encontró el botón de generar');
-
-    // Paso 3 - Ingresar datos
     await inputFilas.clear();
     await inputFilas.sendKeys('3');
+    await driver.sleep(500);
+
     await inputColumnas.clear();
     await inputColumnas.sendKeys('3');
+    await driver.sleep(500);
 
-    // Paso 4 - Click en generar matriz
     await botonGenerar.click();
+    await driver.sleep(1000);
 
-    // Esperar que se genere el contenido
-    let contenedor = await driver.wait(until.elementLocated(By.id('matrizInputs')), 3000);
-    assert.ok(await contenedor.isDisplayed(), 'El contenedor de la matriz no se muestra');
+    // Paso 3 - Verificar y llenar la matriz generada
+    const contenedor = await driver.wait(until.elementLocated(By.id('matrizInputs')), 3000);
+    assert.ok(await contenedor.isDisplayed(), 'No se muestra la matriz generada');
 
-    // Paso 5 - Verificar cantidad de inputs generados (mínimo 9)
-    let inputs = await contenedor.findElements(By.css('input[type="number"]'));
-    assert.ok(inputs.length >= 9, `Se esperaban al menos 9 inputs, pero se encontraron ${inputs.length}`);
+    const inputs = await contenedor.findElements(By.css('input[type="number"]'));
+    assert.ok(inputs.length >= 9, `Se esperaban al menos 9 inputs, se encontraron ${inputs.length}`);
+    await driver.sleep(1000);
 
-    // Paso 6 - Verificar que cada input sea de tipo number
-    for (let input of inputs) {
-      let tipo = await input.getAttribute('type');
-      assert.strictEqual(tipo, 'number', 'El input no es de tipo number');
+    // Insertar valores en los inputs
+    for (let i = 0; i < inputs.length; i++) {
+      await inputs[i].clear();
+      await inputs[i].sendKeys((i + 1).toString()); // llena con 1, 2, ..., 9
+      await driver.sleep(200);
     }
 
-    console.log('✅ Prueba ATDD completada exitosamente.');
+    // Paso 4 - Clic en "Maximizar"
+    const botonMaximizar = await driver.findElement(By.id('maximizar'));
+    await botonMaximizar.click();
+    await driver.sleep(2000); // espera para ver el resultado
+
+    console.log('✅ Prueba extendida completada exitosamente.');
   } catch (error) {
     console.error('❌ Error en la prueba:', error.message);
   } finally {
+    await driver.sleep(2000); // pausa final
     await driver.quit();
   }
 })();
